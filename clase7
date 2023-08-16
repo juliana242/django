@@ -1,0 +1,277 @@
+#Escribir una función que calcule el máximo común divisor entre dos números
+def calcular_mcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+num1 = int(input("Ingrese el primer número: "))
+num2 = int(input("Ingrese el segundo número: "))
+
+mcd = calcular_mcd(num1, num2)
+print(f"El Máximo Común Divisor de {num1} y {num2} es {mcd}")
+#Escribir una función que calcule el mínimo común múltiplo entre dos números
+def calcular_mcm(a, b):
+    mcd = calcular_mcd(a, b)  # Utilizamos la función calcular_mcd del ejemplo anterior
+    return (a * b) // mcd
+
+def calcular_mcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+num1 = int(input("Ingrese el primer número: "))
+num2 = int(input("Ingrese el segundo número: "))
+
+mcm = calcular_mcm(num1, num2)
+print(f"El Mínimo Común Múltiplo de {num1} y {num2} es {mcm}")
+
+#Escribir un programa que reciba una cadena de caracteres y devuelva un diccionario con
+cada palabra que contiene y la cantidad de veces que aparece (frecuencia)
+def contar_palabras(cadena):
+    palabras = cadena.split()  # Dividir la cadena en palabras
+    frecuencia = {}
+
+    for palabra in palabras:
+        palabra = palabra.lower()  # Convertir a minúsculas para considerar mayúsculas y minúsculas iguales
+        if palabra in frecuencia:
+            frecuencia[palabra] += 1
+        else:
+            frecuencia[palabra] = 1
+
+    return frecuencia
+
+entrada = input("Ingrese una cadena de caracteres: ")
+resultado = contar_palabras(entrada)
+
+print("Frecuencia de palabras:")
+for palabra, frec in resultado.items():
+    print(f"'{palabra}': {frec}")
+#Escribir una función que reciba una cadena de caracteres y devuelva un diccionario con cada
+palabra que contiene y la cantidad de veces que aparece (frecuencia). Escribir otra función
+que reciba el diccionario generado con la función anterior y devuelva una tupla con la
+palabra más repetida y su frecuencia
+
+def contar_palabras(cadena):
+    palabras = cadena.split()  # Dividir la cadena en palabras
+    frecuencia = {}
+
+    for palabra in palabras:
+        palabra = palabra.lower()  # Convertir a minúsculas para considerar mayúsculas y minúsculas iguales
+        if palabra in frecuencia:
+            frecuencia[palabra] += 1
+        else:
+            frecuencia[palabra] = 1
+
+    return frecuencia
+
+entrada = input("Ingrese una cadena de caracteres: ")
+resultado = contar_palabras(entrada)
+
+print("Frecuencia de palabras:")
+for palabra, frec in resultado.items():
+    print(f"'{palabra}': {frec}")
+
+#Sabiendo que ValueError es la excepción que se lanza cuando no podemos convertir una
+cadena de texto en su valor numérico, escriba una función get_int() que lea un valor entero
+del usuario y lo devuelva, iterando mientras el valor no sea correcto. Intente resolver el
+ejercicio tanto de manera iterativa como recursiva
+
+def get_int_recursivo():
+    try:
+        valor = int(input("Ingrese un valor entero: "))
+        return valor
+    except ValueError:
+        print("Error: El valor ingresado no es válido. Intente nuevamente.")
+        return get_int_recursivo()
+
+entero = get_int_recursivo()
+print(f"Ha ingresado el valor entero: {entero}")
+
+#Crear una clase llamada Persona. Sus atributos son: nombre, edad y DNI. Construya los
+siguientes métodos para la clase:
+ Un constructor, donde los datos pueden estar vacíos.
+ Los setters y getters para cada uno de los atributos. Hay que validar las entradas de
+datos.
+ mostrar(): Muestra los datos de la persona.
+ Es_mayor_de_edad(): Devuelve un valor lógico indicando si es mayor de edad
+
+#DEBAJO EL CODIGO
+
+class Persona:
+    def __init__(self, nombre="", edad=0, dni=""):
+        self.nombre = nombre
+        self.edad = edad
+        self.dni = dni
+
+    def set_nombre(self, nombre):
+        self.nombre = nombre
+    
+    def get_nombre(self):
+        return self.nombre
+    
+    def set_edad(self, edad):
+        if edad >= 0:
+            self.edad = edad
+        else:
+            print("Error: La edad no puede ser negativa.")
+    
+    def get_edad(self):
+        return self.edad
+    
+    def set_dni(self, dni):
+        if len(dni) == 8:  # Se asume que el DNI tiene 8 dígitos
+            self.dni = dni
+        else:
+            print("Error: El DNI debe tener 8 dígitos.")
+    
+    def get_dni(self):
+        return self.dni
+    
+    def mostrar(self):
+        print(f"Nombre: {self.nombre}")
+        print(f"Edad: {self.edad}")
+        print(f"DNI: {self.dni}")
+    
+    def es_mayor_de_edad(self):
+        return self.edad >= 18
+
+# Crear una instancia de la clase Persona
+persona = Persona()
+
+# Establecer atributos utilizando setters
+persona.set_nombre("Juan")
+persona.set_edad(25)
+persona.set_dni("12345678")
+
+# Mostrar los datos de la persona
+persona.mostrar()
+
+# Verificar si es mayor de edad
+if persona.es_mayor_de_edad():
+    print("Es mayor de edad.")
+else:
+    print("No es mayor de edad.")
+# Crea una clase llamada Cuenta que tendrá los siguientes atributos: titular (que es una
+persona) y cantidad (puede tener decimales). El titular será obligatorio y la cantidad es
+opcional. Crear los siguientes métodos para la clase:
+ Un constructor, donde los datos pueden estar vacíos.
+ Los setters y getters para cada uno de los atributos. El atributo no se puede modificar
+directamente, sólo ingresando o retirando dinero.
+ mostrar(): Muestra los datos de la cuenta.
+ ingresar(cantidad): se ingresa una cantidad a la cuenta, si la cantidad introducida es
+negativa, no se hará nada.
+ retirar(cantidad): se retira una cantidad a la cuenta. La cuenta puede estar en números
+rojos
+
+#DEBAJO EL CODIGO
+class Persona:
+    def __init__(self, nombre="", edad=0, dni=""):
+        self.nombre = nombre
+        self.edad = edad
+        self.dni = dni
+
+    # ... otros métodos de Persona ...
+
+
+class Cuenta:
+    def __init__(self, titular, cantidad=0):
+        self.titular = titular
+        self.cantidad = cantidad
+
+    def set_cantidad(self, cantidad):
+        if cantidad >= 0:
+            self.cantidad = cantidad
+
+    def get_cantidad(self):
+        return self.cantidad
+
+    def mostrar(self):
+        print("Datos de la cuenta:")
+        self.titular.mostrar()
+        print(f"Cantidad: {self.cantidad}")
+
+    def ingresar(self, cantidad):
+        if cantidad > 0:
+            self.cantidad += cantidad
+
+    def retirar(self, cantidad):
+        if cantidad > 0:
+            self.cantidad -= cantidad
+
+# Crear una instancia de la clase Persona
+titular = Persona("Juan", 30, "12345678")
+
+# Crear una instancia de la clase Cuenta
+cuenta = Cuenta(titular, 1000.0)
+
+# Mostrar los datos de la cuenta
+cuenta.mostrar()
+
+# Ingresar dinero en la cuenta
+cuenta.ingresar(500.0)
+
+# Retirar dinero de la cuenta
+cuenta.retirar(200.0)
+
+# Mostrar los datos de la cuenta actualizados
+cuenta.mostrar()
+
+#Vamos a definir ahora una “Cuenta Joven”, para ello vamos a crear una nueva clase
+CuantaJoven que deriva de la clase creada en el punto 7. Cuando se crea esta nueva clase,
+además del titular y la cantidad se debe guardar una bonificación que estará expresada en
+tanto por ciento. Crear los siguientes métodos para la clase:
+ Un constructor.
+ Los setters y getters para el nuevo atributo.
+ En esta ocasión los titulares de este tipo de cuenta tienen que ser mayor de edad, por lo
+tanto hay que crear un método es_titular_valido() que devuelve verdadero si el titular es
+mayor de edad pero menor de 25 años y falso en caso contrario.
+ Además, la retirada de dinero sólo se podrá hacer si el titular es válido.
+ El método mostrar() debe devolver el mensaje de “Cuenta Joven” y la bonificación de la
+cuenta.
+
+#DEBAJO EL CODIGO
+class CuentaJoven(Cuenta):
+    def __init__(self, titular, cantidad=0, bonificacion=0):
+        super().__init__(titular, cantidad)
+        self.bonificacion = bonificacion
+
+    def set_bonificacion(self, bonificacion):
+        if bonificacion >= 0:
+            self.bonificacion = bonificacion
+
+    def get_bonificacion(self):
+        return self.bonificacion
+
+    def es_titular_valido(self):
+        edad_titular = self.titular.get_edad()
+        return 18 <= edad_titular < 25
+
+    def retirar(self, cantidad):
+        if self.es_titular_valido():
+            super().retirar(cantidad)
+        else:
+            print("No es posible retirar dinero para este titular.")
+
+    def mostrar(self):
+        super().mostrar()
+        print(f"Cuenta Joven - Bonificación: {self.bonificacion}%")
+
+# Crear una instancia de la clase Persona para el titular
+titular_joven = Persona("Marta", 20, "87654321")
+
+# Crear una instancia de la clase CuentaJoven
+cuenta_joven = CuentaJoven(titular_joven, 800.0, 5)
+
+# Mostrar los datos de la cuenta joven
+cuenta_joven.mostrar()
+
+# Intentar retirar dinero con un titular válido
+cuenta_joven.retirar(100.0)
+
+# Cambiar titular a uno no válido
+titular_no_valido = Persona("Alan", 16, "98765432")
+cuenta_joven.titular = titular_no_valido
+
+# Intentar retirar dinero con un titular no válido
+cuenta_joven.retirar(200.0)
+
