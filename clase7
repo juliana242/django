@@ -26,6 +26,7 @@ mcm = calcular_mcm(num1, num2)
 print(f"El Mínimo Común Múltiplo de {num1} y {num2} es {mcm}")
 
 #Escribir un programa que reciba una cadena de caracteres y devuelva un diccionario con cada palabra que contiene y la cantidad de veces que aparece (frecuencia)
+
 def contar_palabras(cadena):
     palabras = cadena.split()  # Dividir la cadena en palabras
     frecuencia = {}
